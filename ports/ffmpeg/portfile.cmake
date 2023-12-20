@@ -1,3 +1,4 @@
+
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO ffmpeg/ffmpeg
@@ -539,7 +540,25 @@ if(VCPKG_TARGET_IS_UWP)
     string(APPEND OPTIONS " --extra-ldflags=-APPCONTAINER --extra-ldflags=WindowsApp.lib")
 endif()
 
-set(OPTIONS_DEBUG "--debug --disable-optimizations")
+
+## hschoi added
+
+#set(OPTIONS "${OPTIONS} --enable-libnpp --extra-cflags=-I$ENV{CUDA_PATH}\\include --extra-ldflags=-L$ENV{CUDA_PATH}\\lib\\x64")
+#set(OPTIONS "${OPTIONS} --enable-libnpp --extra-cflags=-I'/C/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v12.3/include' --extra-ldflags=-libpath:\"${CUDA_PATH}/lib\"")
+#set(OPTIONS "${OPTIONS} --enable-libnpp --extra-cflags=-I\"$ENV{CUDA_PATH}\include\" --extra-ldflags=-libpath:\"$ENV{CUDA_PATH}\lib\x64\"")
+#set(OPTIONS "${OPTIONS} --enable-libnpp --extra-cflags=-I\"/C/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v12.3/include\" --extra-ldflags=-libpath:\"/C/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v12.3/lib/x64\"")
+## error
+#set(OPTIONS "${OPTIONS} --enable-libnpp --extra-cflags=-I\"/C/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v12.3/include\"") # err
+#set(OPTIONS "${OPTIONS} --enable-libnpp --extra-cflags=-I\"$ENV{CUDA_PATH}/include\"") # error
+#set(OPTIONS "${OPTIONS} --enable-libnpp --extra-cflags=-I/C/Program\ Files/NVIDIA\ GPU\ Computing\ Toolkit/CUDA/v12.3/include") # err
+
+
+## error
+#set(OPTIONS "${OPTIONS} --enable-nonfree --enable-cuda-nvcc --enable-libnpp --nvccflags='-gencode arch=compute_52,code=sm_52 -O2' --extra-cflags=-I/c/dev/links/cuda/include --extra-ldflags=-libpath:\"/c/dev/links/cuda/lib/x64\"")
+
+set(OPTIONS "${OPTIONS} --enable-nonfree --enable-libnpp --extra-cflags=-I/c/dev/links/cuda/include --extra-ldflags=-libpath:\"/c/dev/links/cuda/lib/x64\"")
+set(OPTIONS "${OPTIONS} --enable-decklink --extra-cflags=-I/C/devices/include")
+set(OPTIONS_DEBUG "--debug --disable-optimizations --enable-debug=3 --disable-stripping --extra-cflags=\"-Ob1 -fno-inline\"")
 set(OPTIONS_RELEASE "--enable-optimizations")
 
 set(OPTIONS "${OPTIONS} ${OPTIONS_CROSS}")
