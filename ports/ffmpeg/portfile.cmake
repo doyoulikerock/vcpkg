@@ -555,10 +555,10 @@ endif()
 #set(OPTIONS "${OPTIONS} --enable-libnpp --extra-cflags=-I/C/Program\ Files/NVIDIA\ GPU\ Computing\ Toolkit/CUDA/v12.3/include") # err
 
 
-## error
-#set(OPTIONS "${OPTIONS} --enable-nonfree --enable-cuda-nvcc --enable-libnpp --nvccflags='-gencode arch=compute_52,code=sm_52 -O2' --extra-cflags=-I/c/dev/links/cuda/include --extra-ldflags=-libpath:\"/c/dev/links/cuda/lib/x64\"")
 
-set(OPTIONS "${OPTIONS} --enable-nonfree --enable-libnpp --extra-cflags=-I/c/dev/links/cuda/include --extra-ldflags=-libpath:\"/c/dev/links/cuda/lib/x64\"")
+set(OPTIONS "${OPTIONS} --arch=x86_64 --enable-nonfree --enable-cuda-nvcc --enable-libnpp --nvccflags=\"-gencode arch=compute_52,code=sm_52 -O2\" --extra-cflags=-I/c/dev/links/cuda/include --extra-ldflags=-libpath:\"/c/dev/links/cuda/lib/x64\"")
+
+#set(OPTIONS "${OPTIONS} --enable-nonfree --enable-libnpp --extra-cflags=-I/c/dev/links/cuda/include --extra-ldflags=-libpath:\"/c/dev/links/cuda/lib/x64\"")
 set(OPTIONS "${OPTIONS} --enable-decklink --extra-cflags=-I/C/devices/include")
 set(OPTIONS_DEBUG "--debug --disable-optimizations --enable-debug=3 --disable-stripping --extra-cflags=\"-Ob1 -fno-inline\"")
 set(OPTIONS_RELEASE "--enable-optimizations")
