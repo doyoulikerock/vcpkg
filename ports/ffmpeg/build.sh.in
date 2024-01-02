@@ -2,7 +2,8 @@
 
 set -e
 
-export PATH="$PATH:/usr/bin"
+# add cuda sdk bin path for nvcc
+export PATH="/c/dev/links/cuda/bin:$PATH:/usr/bin"
 
 command -v cygpath >/dev/null && have_cygpath=1
 
